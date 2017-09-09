@@ -36,3 +36,12 @@ $ pip install -r requirements.txt
 ```
 
 Warning: Do not remove `requirements.txt` from `.gitignore`!
+
+## Running the server
+
+Before you run it, you must set the `FLASK_APP` environment variable. Within virtualenv, run:
+```
+$ export FLASK_APP=main.py
+```
+
+Then, you can run `$ flask run`. This works even if you deactivate and re-activate the environment.
