@@ -15,6 +15,14 @@ def view_status(username):
 
 @app.route("/user/<username>", methods=["PUT"])
 def update_status(username):
+    # Get user from db model
     user = get_user()
-    # TODO save to database
-    pass
+
+    # Parse request body as JSON
+    json_in = request.json
+
+    # Copy fields from JSON object to model
+    user.from_json(json_in)
+
+    # Save to database
+    user.save()

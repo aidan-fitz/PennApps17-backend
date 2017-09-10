@@ -10,8 +10,9 @@ class User(Base):
     location = Column(Geography(geometry_type='POINT', srid=420))
     marker = Column(Geography(geometry_type='POINT', srid=699))
 
-    def __init__(self, name=None):
-        self.name = name
+    def __init__(self, json=None):
+        if json is not None:
+            self.from_json(json)
 
     def __repr__(self):
         return '<User %r>' % (self.name)
@@ -21,14 +22,23 @@ class User(Base):
             'name': self.name,
             'online': self.online,
             'location': {
-                'lat': self.location.geom.x,
-                'long': self.location.geom.y
+                'lat': self.location.geom.y,
+                'long': self.location.geom.x
             },
             'marker': {
-                'lat': self.marker.geom.x,
-                'long': self.marker.geom.y
+                'lat': self.marker.geom.y,
+                'long': self.marker.geom.x
             }
         }
+    
+    def from_json(self, json):
+        self.name = json['name']
+        self.online = json['online']
+        self.location.geom.y = json['location']['lat']
+        self.location.geom.x = json['location']['long']
+        self.marker.geom.y = json['marker']['lat']
+        self.marker.geom.x = json['marker']['long']
+
 
 
 def get_user(name):
