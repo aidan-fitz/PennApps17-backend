@@ -1,6 +1,15 @@
 # PennApps17-backend
 Back end for PennApps F17 project
 
+## API Documentation
+
+- `GET /user/<username>`
+  - Retrieves information about user `<username>` in JSON format.
+- `PUT /user/<username>`
+  - Updates informaton about user `<username>` from the data in the request body.
+- `POST /user/`
+  - Creates a new user on the server from the data in the request body.
+
 ## Setup instructions
 
 To setup `virtualenv` with Python 3.x, navigate to the root directory of this repo and type:
