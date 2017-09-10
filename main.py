@@ -10,13 +10,13 @@ def hello():
 
 @app.route("/user/<username>", methods=['GET'])
 def view_status(username):
-    user = get_user()
+    user = get_user(username)
     return jsonify(user.to_json())
 
 @app.route("/user/<username>", methods=["PUT"])
 def update_status(username):
     # Get user from db model
-    user = get_user()
+    user = get_user(username)
 
     # Parse request body as JSON
     json_in = request.json

@@ -41,5 +41,5 @@ class User(Base):
 
 
 
-def get_user(name):
-    return User.query.filter(User.name == name).first()
+def get_user(username):
+    return User.query.filter(User.name == username).first()
