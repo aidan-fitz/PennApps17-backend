@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 
-from models import get_user
+from models import get_user, User
+from database import db_session
 
 app = Flask(__name__)
 
@@ -26,3 +27,12 @@ def update_status(username):
 
     # Save to database
     user.save()
+    db_session.commit()
+
+@app.route("/user/", methods=["POST"])
+def new_user():
+    json = request.json
+    user = User(json)
+    db_session.add(user)
+    db_session.commit()
+
